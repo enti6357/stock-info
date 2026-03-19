@@ -6,11 +6,9 @@ interface SearchResult {
   symbol: string;
   name: string;
   market: 'KR' | 'US';
-  price?: number;
-  change_percent?: number;
 }
 
-// Yahoo Finance에서 실시간 검색
+// 자체 API로 검색 (한글/영문/티커 모두 지원)
 export function useStockSearch() {
   const [results, setResults] = useState<SearchResult[]>([]);
   const [loading, setLoading] = useState(false);
@@ -26,31 +24,12 @@ export function useStockSearch() {
       setLoading(true);
       setError(null);
 
-      // Yahoo Finance 검색 API
-      const res = await fetch(
-        `https://query1.finance.yahoo.com/v1/finance/search?q=${encodeURIComponent(query)}&quotesCount=10&newsCount=0`
-      );
+      const res = await fetch(`/api/stocks/search?q=${encodeURIComponent(query)}`);
 
       if (!res.ok) throw new Error('Search failed');
 
       const data = await res.json();
-      const quotes = data.quotes || [];
-
-      const searchResults: SearchResult[] = quotes
-        .filter((q: any) => q.quoteType === 'EQUITY')
-        .map((q: any) => {
-          // 한국 주식 판별 (.KS, .KQ)
-          const isKR = q.symbol.endsWith('.KS') || q.symbol.endsWith('.KQ');
-          const symbol = isKR ? q.symbol.replace(/\.(KS|KQ)$/, '') : q.symbol;
-
-          return {
-            symbol,
-            name: q.shortname || q.longname || q.symbol,
-            market: isKR ? 'KR' : 'US',
-          };
-        });
-
-      setResults(searchResults);
+      setResults(data.results || []);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Search failed');
       setResults([]);
