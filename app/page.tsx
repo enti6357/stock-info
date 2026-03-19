@@ -1,77 +1,91 @@
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* 네비게이션 바 */}
-      <nav className="sticky top-0 z-50 backdrop-blur-lg bg-white/80 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-800">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">S</span>
+      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/90 dark:bg-gray-950/90 border-b border-gray-100 dark:border-gray-800">
+        <div className="max-w-5xl mx-auto px-6 py-5 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-blue-600 rounded-2xl flex items-center justify-center">
+              <span className="text-white font-bold text-xl">S</span>
             </div>
-            <span className="text-xl font-bold text-gray-900 dark:text-white">Stock Info</span>
+            <span className="text-xl font-bold text-gray-900 dark:text-white tracking-tight">Stock Info</span>
           </div>
-          <div className="flex gap-6 text-sm font-medium">
-            <a href="#" className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors">
+          <div className="flex items-center gap-2">
+            <a href="#" className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
               시장
             </a>
-            <a href="#" className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors">
-              포트폴리오
-            </a>
-            <a href="#" className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors">
+            <a href="#" className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
               뉴스
+            </a>
+            <a href="#" className="px-4 py-2.5 text-sm font-semibold text-white bg-gray-900 dark:bg-white dark:text-gray-900 rounded-xl hover:bg-gray-800 dark:hover:bg-gray-100 transition-all ml-2">
+              시작하기
             </a>
           </div>
         </div>
       </nav>
 
-      <div className="container mx-auto px-4 py-12">
-        {/* 히어로 섹션 */}
-        <header className="text-center mb-16 animate-fade-in-up">
-          <div className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-semibold mb-4">
-            실시간 시세 업데이트 중 <span className="animate-pulse-slow">●</span>
-          </div>
-          <h1 className="text-6xl md:text-7xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
-            스마트한 투자를 위한
-            <br />
-            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              실시간 주식 정보
-            </span>
+      <div className="max-w-5xl mx-auto px-6 py-16">
+        {/* 히어로 섹션 - 토스 스타일: 대담한 타이포그래피 */}
+        <header className="mb-20 animate-fade-in-up">
+          <p className="text-blue-600 dark:text-blue-400 font-semibold text-lg mb-4">
+            실시간 주식 정보
+          </p>
+          <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-[1.1] tracking-tight">
+            투자, 이제<br />
+            더 쉽게
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            주요 종목의 실시간 시세와 차트 분석으로 더 나은 투자 결정을 내리세요
+          <p className="text-xl text-gray-500 dark:text-gray-400 max-w-lg leading-relaxed">
+            복잡한 주식 정보를 한눈에 파악하고<br />
+            더 나은 투자 결정을 내리세요
           </p>
         </header>
 
-        {/* 주요 기능 카드 */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
-          <FeatureCard
-            icon="📊"
-            title="실시간 시세"
-            description="주요 종목의 실시간 시세를 확인하세요"
-          />
-          <FeatureCard
-            icon="📈"
-            title="차트 분석"
-            description="다양한 기술적 지표로 분석하세요"
-          />
-          <FeatureCard
-            icon="🔔"
-            title="알림 설정"
-            description="가격 알림으로 기회를 놓치지 마세요"
-          />
-        </div>
-
-        {/* 인기 종목 섹션 */}
-        <section className="bg-white dark:bg-gray-900/50 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-800 p-8 mb-12">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-              인기 종목
+        {/* 시장 현황 - 숫자 강조 */}
+        <section className="mb-20">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+              오늘의 시장
             </h2>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              2026.03.20 기준
+            <span className="flex items-center gap-2 text-sm text-gray-400">
+              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+              실시간
             </span>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid md:grid-cols-3 gap-4">
+            <MarketIndexCard 
+              name="코스피" 
+              value="2,645.85" 
+              change="+15.32"
+              changePercent="+0.58%"
+              positive 
+            />
+            <MarketIndexCard 
+              name="코스닥" 
+              value="785.42" 
+              change="-3.21"
+              changePercent="-0.41%"
+            />
+            <MarketIndexCard 
+              name="USD/KRW" 
+              value="1,342.50" 
+              change="+5.20"
+              changePercent="+0.39%"
+              positive 
+            />
+          </div>
+        </section>
+
+        {/* 인기 종목 섹션 */}
+        <section className="mb-20">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+              인기 종목
+            </h2>
+            <button className="text-blue-600 dark:text-blue-400 text-sm font-semibold hover:underline underline-offset-4">
+              전체보기 →
+            </button>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4">
             <StockCard 
               name="삼성전자" 
               code="005930"
@@ -106,26 +120,29 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 시장 현황 */}
-        <div className="grid md:grid-cols-3 gap-6">
-          <MarketIndexCard 
-            name="코스피" 
-            value="2,645.85" 
-            change="+15.32 (+0.58%)" 
-            positive 
-          />
-          <MarketIndexCard 
-            name="코스닥" 
-            value="785.42" 
-            change="-3.21 (-0.41%)" 
-          />
-          <MarketIndexCard 
-            name="환율 (USD/KRW)" 
-            value="1,342.50" 
-            change="+5.20 (+0.39%)" 
-            positive 
-          />
-        </div>
+        {/* 주요 기능 카드 */}
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+            주요 기능
+          </h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            <FeatureCard
+              icon="📊"
+              title="실시간 시세"
+              description="주요 종목의 실시간 시세를 한눈에"
+            />
+            <FeatureCard
+              icon="📈"
+              title="차트 분석"
+              description="다양한 기술적 지표로 스마트하게"
+            />
+            <FeatureCard
+              icon="🔔"
+              title="가격 알림"
+              description="목표가 도달 시 바로 알림"
+            />
+          </div>
+        </section>
       </div>
     </div>
   );
@@ -142,22 +159,21 @@ function FeatureCard({
   description: string;
 }) {
   return (
-    <div className="group relative bg-white dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl border border-gray-200 dark:border-gray-800 p-8 transition-all duration-300 hover:-translate-y-1">
-      <div className="text-5xl mb-5 group-hover:scale-110 transition-transform duration-300">
+    <div className="group bg-white dark:bg-gray-900 rounded-2xl p-6 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer">
+      <div className="text-4xl mb-4">
         {icon}
       </div>
-      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
         {title}
       </h3>
-      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+      <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
         {description}
       </p>
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/5 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
     </div>
   );
 }
 
-// 주식 카드 컴포넌트
+// 주식 카드 컴포넌트 - 토스 스타일: 숫자 강조, 넉넉한 터치 영역
 function StockCard({ 
   name, 
   code,
@@ -174,71 +190,73 @@ function StockCard({
   positive?: boolean;
 }) {
   const changeColor = positive 
-    ? 'text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20' 
-    : 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20';
+    ? 'text-red-500 dark:text-red-400' 
+    : 'text-blue-500 dark:text-blue-400';
   
   return (
     <button 
-      className="w-full text-left bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-5 hover:shadow-lg border border-gray-200 dark:border-gray-700 transition-all duration-200 hover:-translate-y-0.5 group"
+      className="w-full text-left bg-white dark:bg-gray-900 rounded-2xl p-6 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 group min-h-[120px]"
       aria-label={`${name} 상세 보기`}
     >
-      <div className="flex items-start justify-between mb-3">
-        <div>
-          <h4 className="font-bold text-gray-900 dark:text-white text-lg mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-            {name}
-          </h4>
-          <span className="text-xs text-gray-500 dark:text-gray-400">{code}</span>
+      <div className="flex items-center justify-between">
+        {/* 왼쪽: 종목 정보 */}
+        <div className="flex-1">
+          <div className="flex items-center gap-2 mb-1">
+            <h4 className="font-bold text-gray-900 dark:text-white text-lg">
+              {name}
+            </h4>
+            <span className="text-xs text-gray-400 dark:text-gray-500">{code}</span>
+          </div>
+          <div className={`flex items-center gap-2 text-sm font-semibold ${changeColor}`}>
+            <span>{positive ? '▲' : '▼'}</span>
+            <span>{amount}원</span>
+            <span className="text-gray-400 font-normal">({change})</span>
+          </div>
         </div>
-        <svg 
-          className="w-5 h-5 text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" 
-          fill="none" 
-          viewBox="0 0 24 24" 
-          stroke="currentColor"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </div>
-      <p className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-        {price}
-        <span className="text-sm font-normal text-gray-500 ml-1">원</span>
-      </p>
-      <div className={`inline-flex items-center gap-2 px-2.5 py-1 rounded-lg text-sm font-semibold ${changeColor}`}>
-        <span>{positive ? '▲' : '▼'}</span>
-        <span>{change}</span>
-        <span className="text-xs opacity-80">{amount}</span>
+        
+        {/* 오른쪽: 가격 (크게 강조) */}
+        <div className="text-right">
+          <p className="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+            {price}
+          </p>
+          <p className="text-xs text-gray-400 mt-1">원</p>
+        </div>
       </div>
     </button>
   );
 }
 
-// 시장 지수 카드 컴포넌트
+// 시장 지수 카드 컴포넌트 - 토스 스타일: 숫자 최우선
 function MarketIndexCard({ 
   name, 
   value, 
-  change, 
+  change,
+  changePercent,
   positive 
 }: { 
   name: string; 
   value: string; 
-  change: string; 
+  change: string;
+  changePercent: string;
   positive?: boolean;
 }) {
   const changeColor = positive 
-    ? 'text-red-600 dark:text-red-400' 
-    : 'text-blue-600 dark:text-blue-400';
+    ? 'text-red-500 dark:text-red-400 bg-red-50 dark:bg-red-500/10' 
+    : 'text-blue-500 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10';
 
   return (
-    <div className="bg-white dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800 p-6">
-      <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
+    <div className="bg-white dark:bg-gray-900 rounded-2xl p-6">
+      <p className="text-sm font-medium text-gray-400 dark:text-gray-500 mb-3">
         {name}
-      </h3>
-      <p className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+      </p>
+      <p className="text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-3">
         {value}
       </p>
-      <p className={`text-sm font-semibold ${changeColor} flex items-center gap-1`}>
+      <div className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold ${changeColor}`}>
         <span>{positive ? '▲' : '▼'}</span>
-        {change}
-      </p>
+        <span>{change}</span>
+        <span className="opacity-70">{changePercent}</span>
+      </div>
     </div>
   );
 }
