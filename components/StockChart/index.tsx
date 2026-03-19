@@ -37,58 +37,36 @@ export default function StockChart({ symbol, market, name, onClose }: StockChart
   const fetchChartData = async () => {
     try {
       setLoading(true);
-      const yahooSymbol = market === 'KR' ? `${symbol}.KS` : symbol;
-      const interval = range === '1d' ? '5m' : range === '5d' ? '15m' : '1d';
-
+      
+      // 서버 API를 통해 Yahoo Finance 데이터 가져오기 (CORS 우회)
       const res = await fetch(
-        `https://query1.finance.yahoo.com/v8/finance/chart/${yahooSymbol}?interval=${interval}&range=${range}`
+        `/api/stocks/chart?symbol=${symbol}&market=${market}&range=${range}`
       );
 
       if (!res.ok) {
-        // 코스닥 시도
-        if (market === 'KR') {
-          const kqRes = await fetch(
-            `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}.KQ?interval=${interval}&range=${range}`
-          );
-          if (kqRes.ok) {
-            const kqData = await kqRes.json();
-            processChartData(kqData);
-            return;
-          }
-        }
         throw new Error('Failed to fetch chart data');
       }
 
       const data = await res.json();
-      processChartData(data);
+      
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      setChartData(data.chartData || []);
+      setCurrentPrice(data.currentPrice);
+      
+      if (data.change !== undefined) {
+        setPriceChange({ 
+          change: data.change, 
+          percent: data.changePercent 
+        });
+      }
     } catch (err) {
       console.error('Chart fetch error:', err);
+      setChartData([]);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const processChartData = (data: any) => {
-    const result = data.chart.result[0];
-    const timestamps = result.timestamp || [];
-    const prices = result.indicators.quote[0].close || [];
-    const meta = result.meta;
-
-    const chartPoints: ChartData[] = timestamps
-      .map((ts: number, i: number) => ({
-        timestamp: ts * 1000,
-        price: prices[i],
-      }))
-      .filter((p: ChartData) => p.price != null);
-
-    setChartData(chartPoints);
-    setCurrentPrice(meta.regularMarketPrice);
-
-    const prevClose = meta.previousClose || meta.chartPreviousClose;
-    if (prevClose) {
-      const change = meta.regularMarketPrice - prevClose;
-      const percent = (change / prevClose) * 100;
-      setPriceChange({ change, percent });
     }
   };
 
